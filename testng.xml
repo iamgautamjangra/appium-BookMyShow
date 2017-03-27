@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Book My Show Automation" verbose="1" >
+  <test name="Regression" >
+    <classes>
+      <class name="com.gautam.appium.appium_mobile.BookMyShow"/>
+    </classes>
+ </test>
+</suite>
