@@ -32,15 +32,9 @@ public class BookMyShow {
 		desCapabilities.setCapability("appPackage", "com.bt.bms");
 		desCapabilities.setCapability("appActivity", "com.movie.bms.splash.views.activities.SplashScreenActivity");
 		
-		driver = new  RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), desCapabilities);
+		this.driver = new  RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"), desCapabilities);
 	}
 
-	public void waitForElement (By element) {
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(element));
-		
-	}
-	
 	@Test(priority = 1)
 	public void selectEnglishLanguage() throws InterruptedException {
 		waitForElement(By.id("com.bt.bms:id/language_text_view_label"));
@@ -77,13 +71,23 @@ public class BookMyShow {
 	public void skipLogin() throws InterruptedException {
 		driver.findElement(By.id("com.bt.bms:id/launcher_tv_for_skip")).click();
 		
-		waitForElement(By.name("OK"));
+/*		waitForElement(By.name("OK"));
 		WebElement ok = driver.findElement(By.name("OK"));
 		if (ok.isDisplayed()) {
 			ok.click();
-		}
+		}*/
 		waitForElement(By.name("Now Showing"));
 		System.out.println("Text - " + driver.findElement(By.name("Now Showing")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.name("Now Showing")).isDisplayed());
+	}
+
+	public void waitForElement (By element) {
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+		
+	}
+	
+	public WebDriver getDriver() {
+		return this.driver;
 	}
 }
